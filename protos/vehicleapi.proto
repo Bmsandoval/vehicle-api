@@ -1,0 +1,60 @@
+syntax = "proto3";
+option go_package = "protos;vehicleapi_proto";
+
+service Vehicles {
+    rpc VehicleCreate (VehicleCreateRequest) returns (VehicleCreateResponse) {}
+    rpc VehicleRead (VehicleReadRequest) returns (VehicleReadResponse) {}
+    rpc VehicleSearch (VehicleSearchRequest) returns (stream VehicleSearchResponse) {}
+    rpc VehicleUpdate (VehicleUpdateRequest) returns (VehicleUpdateResponse) {}
+    rpc VehicleDelete (VehicleDeleteRequest) returns (VehicleDeleteResponse) {}
+}
+
+message VehicleCreateRequest {
+    string make = 2;
+    string model = 3;
+    string vin = 4;
+}
+message VehicleCreateResponse {
+    int64 id = 1;
+    string make = 2;
+    string model = 3;
+    string vin = 4;
+}
+
+message VehicleReadRequest {
+    int64 id = 1;
+}
+message VehicleReadResponse {
+    int64 id = 1;
+    string make = 2;
+    string model = 3;
+    string vin = 4;
+}
+
+message VehicleSearchRequest {
+    string make = 1;
+    string model = 2;
+}
+message VehicleSearchResponse {
+    int64 id = 1;
+    string make = 2;
+    string model = 3;
+    string vin = 4;
+}
+
+message VehicleUpdateRequest {
+    int64 id = 1;
+    string make = 2;
+    string model = 3;
+    string vin = 4;
+}
+message VehicleUpdateResponse {
+    int64 countUpdated = 1;
+}
+
+message VehicleDeleteRequest {
+    int64 id = 1;
+}
+message VehicleDeleteResponse {
+    int64 countDeleted = 1;
+}
